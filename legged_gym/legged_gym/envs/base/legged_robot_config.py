@@ -33,11 +33,11 @@ from .base_config import BaseConfig
 class LeggedRobotCfg(BaseConfig):
     class env:
         num_envs = 4096
-        num_one_step_observations = 45
+        num_one_step_observations = 45  # agent 单步观测向量长度
         num_observations = num_one_step_observations * 6
         num_one_step_privileged_obs = 45 + 3 + 3 + 187 # additional: base_lin_vel, external_forces, scan_dots
         num_privileged_obs = num_one_step_privileged_obs * 1 # if not None a priviledge_obs_buf will be returned by step() (critic obs for assymetric training). None is returned otherwise 
-        num_actions = 12
+        num_actions = 12    # 动作维度，串联马是12自由度
         env_spacing = 3.  # not used with heightfields/trimeshes 
         send_timeouts = True # send time out information to the algorithm
         episode_length_s = 20 # episode length in seconds
@@ -46,11 +46,11 @@ class LeggedRobotCfg(BaseConfig):
         mesh_type = 'trimesh' # "heightfield" # none, plane, heightfield or trimesh
         horizontal_scale = 0.1 # [m]
         vertical_scale = 0.005 # [m]
-        border_size = 25 # [m]
+        border_size = 25    # 边界区域大小[m]
         curriculum = True
-        static_friction = 1.0
-        dynamic_friction = 1.0
-        restitution = 0.
+        static_friction = 1.0   # 静态摩擦系数
+        dynamic_friction = 1.0  # 动态摩擦系数
+        restitution = 0.    # 弹性系数
         # rough terrain only:
         measure_heights = True
         measured_points_x = [-0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0., 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8] # 1mx1.6m rectangle (without center line)
@@ -62,8 +62,9 @@ class LeggedRobotCfg(BaseConfig):
         terrain_width = 8.
         num_rows= 10 # number of terrain rows (levels)
         num_cols = 20 # number of terrain cols (types)
+
         # terrain types: [smooth slope, rough slope, stairs up, stairs down, discrete]
-        terrain_proportions = [0.1, 0.2, 0.3, 0.3, 0.1]
+        terrain_proportions = [0.1, 0.2, 0.3, 0.3, 0.1]     # 训练中不同地形的出现概率分布
         # trimesh only:
         slope_treshold = 0.75 # slopes above this threshold will be corrected to vertical surfaces
 
@@ -157,10 +158,10 @@ class LeggedRobotCfg(BaseConfig):
         push_interval_s = 16
         max_push_vel_xy = 1.
 
-        delay = True
+        delay = True    # 引入控制延迟，模拟真实信号延迟
 
     class rewards:
-        class scales:
+        class scales:   # 各项 reward 的权重系数
             termination = -0.0
             tracking_lin_vel = 1.0
             tracking_ang_vel = 0.5
@@ -187,7 +188,7 @@ class LeggedRobotCfg(BaseConfig):
         clearance_height_target = 0.09
 
     class normalization:
-        class obs_scales:
+        class obs_scales:   # 各类观测的归一化尺度
             lin_vel = 2.0
             ang_vel = 0.25
             dof_pos = 1.0
@@ -199,7 +200,7 @@ class LeggedRobotCfg(BaseConfig):
     class noise:
         add_noise = True
         noise_level = 1.0 # scales other values
-        class noise_scales:
+        class noise_scales:   # 各类观测的噪声尺度
             dof_pos = 0.01
             dof_vel = 1.5
             lin_vel = 0.1
@@ -219,8 +220,8 @@ class LeggedRobotCfg(BaseConfig):
         gravity = [0., 0. ,-9.81]  # [m/s^2]
         up_axis = 1  # 0 is y, 1 is z
 
-        class physx:
-            num_threads = 10
+        class physx:    # 物理引擎 physx 参数
+            num_threads = 10    # CPU线程数
             solver_type = 1  # 0: pgs, 1: tgs
             num_position_iterations = 4
             num_velocity_iterations = 0
