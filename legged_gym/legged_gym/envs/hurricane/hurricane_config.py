@@ -126,7 +126,10 @@ class HurricaneRoughCfgPPO( LeggedRobotCfgPPO ):
     class algorithm( LeggedRobotCfgPPO.algorithm ):
         entropy_coef = 0.01
     class runner( LeggedRobotCfgPPO.runner ):
+        num_steps_per_env = 100 # per iteration
+        max_iterations = 10000 # number of policy updates
+    
+        save_interval = 50 # check for potential saves every this many iterations
         run_name = ''
         experiment_name = 'rough_hurricane'
 
-  
