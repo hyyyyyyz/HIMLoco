@@ -33,8 +33,10 @@ from legged_gym.envs.a1.a1_config import A1RoughCfg, A1RoughCfgPPO
 from .base.legged_robot import LeggedRobot
 from .a1.a1_config import A1RoughCfg, A1RoughCfgPPO
 from legged_gym.envs.go1.go1_config import Go1RoughCfg, Go1RoughCfgPPO
-from legged_gym.envs.aliengo.aliengo_config import AlienGoRoughCfg, AlienGoRoughCfgPPO
-from legged_gym.envs.hurricane.hurricane_config import HurricaneRoughCfg, HurricaneRoughCfgPPO
+
+from legged_gym.envs.hurricane_mid_walk.hurricane_mid_walk_config import HurricaneMidWalkRoughCfg, HurricaneMidWalkRoughCfgPPO
+from legged_gym.envs.hurricane_low_walk.hurricane_low_walk_config import HurricaneLowWalkRoughCfg, HurricaneLowWalkRoughCfgPPO
+from legged_gym.envs.hurricane_high_walk.hurricane_high_walk_config import HurricaneHighWalkRoughCfg, HurricaneHighWalkRoughCfgPPO
 
 import os
 
@@ -42,5 +44,7 @@ from legged_gym.utils.task_registry import task_registry
 
 task_registry.register( "a1", LeggedRobot, A1RoughCfg(), A1RoughCfgPPO() )
 task_registry.register( "go1", LeggedRobot, Go1RoughCfg(), Go1RoughCfgPPO() )
-task_registry.register( "aliengo", LeggedRobot, AlienGoRoughCfg(), AlienGoRoughCfgPPO() )
-task_registry.register( "hurricane", LeggedRobot, HurricaneRoughCfg(), HurricaneRoughCfgPPO() )
+
+task_registry.register( "hurricane_mid_walk", LeggedRobot, HurricaneMidWalkRoughCfg(), HurricaneMidWalkRoughCfgPPO() )
+task_registry.register( "hurricane_low_walk", LeggedRobot, HurricaneLowWalkRoughCfg(), HurricaneLowWalkRoughCfgPPO() )
+task_registry.register( "hurricane_high_walk", LeggedRobot, HurricaneHighWalkRoughCfg(), HurricaneHighWalkRoughCfgPPO() )
