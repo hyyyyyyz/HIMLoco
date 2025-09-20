@@ -91,36 +91,36 @@ class HurricaneMidWalkRoughCfg( LeggedRobotCfg ):
   
     class rewards( LeggedRobotCfg.rewards ):
         class scales:
-            termination = -0.0
-            tracking_lin_vel = 1.0
-            tracking_ang_vel = 0.5
-            lin_vel_z = -2.0
-            ang_vel_xy = -0.05
-            orientation = -0.2
-            dof_acc = -2.5e-7
-            joint_power = -2e-5
-            base_height = -1.0
-            foot_clearance = -0.01
-            action_rate = -0.01
-            smoothness = -0.01
-            feet_air_time =  0.0
-            collision = -0.0
-            feet_stumble = -0.0
-            stand_still = -0.
-            torques = -0.0
-            dof_vel = -0.0
-            dof_pos_limits = -0.0
-            dof_vel_limits = -0.0
-            torque_limits = -0.0
+            termination = -0.0                                   # 回合被终止的一次性惩罚权重
+            tracking_lin_vel = 1.0                               # 线速度跟踪奖励权重
+            tracking_ang_vel = 0.5                               # 角速度跟踪奖励权重
+            lin_vel_z = -2.0                                     # 竖直线速度惩罚权重
+            ang_vel_xy = -0.05                                   # 横滚和俯仰角速度惩罚权重
+            orientation = -0.2                                   # 姿态偏差惩罚权重
+            dof_acc = -2.5e-7                                    # 关节加速度惩罚权重
+            joint_power = -2e-5                                  # 关节功率惩罚权重
+            base_height = -1.0                                   # 机身高度偏差惩罚权重
+            foot_clearance = -0.01                               # 足端高度惩罚权重
+            action_rate = -0.01                                  # 动作一阶差分惩罚权重
+            smoothness = -0.01                                   # 动作二阶差分惩罚权重
+            feet_air_time =  0.0                                 # 足端腾空时长奖励权重
+            collision = -0.0                                     # 非足端接触惩罚权重
+            feet_stumble = -0.0                                  # 足端绊倒惩罚权重
+            stand_still = -0.                                    # 静止奖励权重
+            torques = -0.0                                       # 关节扭矩惩罚权重
+            dof_vel = -0.0                                       # 关节速度惩罚权重
+            dof_pos_limits = -0.0                                # 接近关节位置限制惩罚权重
+            dof_vel_limits = -0.0                                # 接近关节速度限制惩罚权重
+            torque_limits = -0.0                                 # 接近关节扭矩限制惩罚权重
 
-        only_positive_rewards = False # if true negative total rewards are clipped at zero (avoids early termination problems)
-        tracking_sigma = 0.25 # tracking reward = exp(-error^2/sigma)
-        soft_dof_pos_limit = 1. # percentage of urdf limits, values above this limit are penalized
+        only_positive_rewards = False                            # if true negative total rewards are clipped at zero (avoids early termination problems)
+        tracking_sigma = 0.25                                    # tracking reward = exp(-error^2/sigma)
+        soft_dof_pos_limit = 1.                                  # percentage of urdf limits, values above this limit are penalized
         soft_dof_vel_limit = 1.
         soft_torque_limit = 1.
-        base_height_target = 0.30
-        max_contact_force = 100. # forces above this value are penalized
-        clearance_height_target = -0.20
+        base_height_target = 0.5                                 # 机身目标高度
+        max_contact_force = 100.                                 # 触底冲击阈值 forces above this value are penalized
+        clearance_height_target = -0.20                          # 足端目标高度
 
 class HurricaneMidWalkRoughCfgPPO( LeggedRobotCfgPPO ):
     class algorithm( LeggedRobotCfgPPO.algorithm ):

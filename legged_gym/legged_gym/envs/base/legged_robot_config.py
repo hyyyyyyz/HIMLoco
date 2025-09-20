@@ -64,6 +64,7 @@ class LeggedRobotCfg(BaseConfig):
         num_cols = 20 # number of terrain cols (types)
 
         # terrain types: [smooth slope, rough slope, stairs up, stairs down, discrete]
+        # 地形类型：[平滑斜坡，粗糙斜坡，上楼梯，下楼梯，离散障碍]
         terrain_proportions = [0.1, 0.2, 0.3, 0.3, 0.1]     # 训练中不同地形的出现概率分布
         # trimesh only:
         slope_treshold = 0.75 # slopes above this threshold will be corrected to vertical surfaces
